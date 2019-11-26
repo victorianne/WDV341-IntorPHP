@@ -36,26 +36,26 @@ tr:nth-child(even) {
 
   $sql = "SELECT * FROM events";
   //first pass just gets the column names
-  print "<table> ";
+  echo "<table> ";
   $result = $conn->query($sql);
   //return only the first row (we only need field names)
   $row = $result->fetch(PDO::FETCH_ASSOC);
-  print " <tr> ";
+  echo " <tr> ";
   foreach ($row as $field => $value){
-   print " <th>$field</th> ";
+   echo " <th>$field</th> ";
   } // end foreach
-  print " </tr> ";
+  echo " </tr> ";
   //second query gets the data
   $data = $conn->query($sql);
   $data->setFetchMode(PDO::FETCH_ASSOC);
   foreach($data as $row){
-   print " <tr> ";
+   echo " <tr> ";
    foreach ($row as $name=>$value){
-   print " <td>$value</td> ";
+   echo " <td>$value</td> ";
    } // end field loop
-   print " </tr> ";
+   echo " </tr> ";
   } // end record loop
-  print "</table> ";
+  echo "</table> ";
   
 
  ?>
