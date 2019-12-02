@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Validation</title>
+</head>
+<body>
+
+<?php
+
+$testBoolean = true;
+
+include 'formClass.php';
+ 
+ $validateTool = new FormValidation(); //instantiate a new object
+ 
+ echo "Empty quores: " . $validateTool->validateRequiredField(""); "<br>"
+
+ echo "Single space: " . $validateTool->validateRequiredField(" "); "<br>"
+
+ echo "Double space: " . $validateTool->validateRequiredField("  "); "<br>"
+ 
+ //echo "Empty quotes:  " . $testBoolean;
+
+ //echo "false " . $testBoolean;
+ echo "a: " . $validateTool->validateRequiredField("a"); "<br>"
+
+ echo "4: " . $validateTool->validateRequiredField("4"); "<br>"
+ 
+ echo "null: " . $validateTool->validateRequiredField(null); "<br>"
+
+ echo "undefined: " . $validateTool->validateRequiredField(undefined); "<br>"
+
+?>
+</body>
+</html>
