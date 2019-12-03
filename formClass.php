@@ -1,6 +1,9 @@
 <?php
+
+
 class FormValidation 
 {
+
 
 /*
 This class will hold a variety of general pipose methods that are used to validate fomr fields.
@@ -20,14 +23,14 @@ the methods will accept inputs as needed and will return true if the value(s) pa
 
 	//This field needs something in it. It can't be empty
 	{
-		if(trim($inputValue)=="" || $inputValue=="undefined" || !strcasecmp($inputValue,"null"))
+		if(!preg_match("/^[a-zA-Z ]*$/",$inputValue || ($inputValue) == ""))
 		{
 
-			return "false";
+			return "Name Field is invalid";
 		}
 		else
 		{
-			return true;# code...
+			return "";# code...
 		}
 	}//end validateRequiredField()
 
@@ -41,11 +44,11 @@ public function validateEmailField($inputValue)
 {
 	if (!filter_var($inputValue, FILTER_VALIDATE_EMAIL) === false)
 	{
-		return true;
+		return "";
 	}
 	else
 	{
-		return false;
+		return "Email is invalid";
 	}
 
 }//end of validateEmailField
@@ -59,9 +62,9 @@ function validate_phone_number($inputValue)
      // Check the lenght of number
      // This can be customized if you want phone number from a specific country
      if (strlen($phone_to_check) < 10 || strlen($phone_to_check) > 14) {
-        return "false";
+        return "Phone Number is invalid";
      } else {
-       return true;
+       return "";
      }
 }
 
@@ -69,11 +72,11 @@ public function validateRadioButton($inputValue)
 {
 	if (trim($inputValue)=="")
 	{
-		return "false";
+		return "Radio Button is required";
 	}
 	else
 	{
-		return true;
+		return "";
 	}
 
 }//end of validateRadioButton
@@ -82,11 +85,11 @@ public function validateOptionList($inputValue)
 {
 	if (trim($inputValue)=="")
 	{
-		return "false";
+		return "Option List is required";
 	}
 	else
 	{
-		return true;
+		return "";
 	}
 
 }//end of validateRadioButton

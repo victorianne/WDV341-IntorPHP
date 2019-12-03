@@ -1,4 +1,8 @@
 <?php 
+
+  include 'formClass.php';
+ 
+ $validateTool = new FormValidation(); //instantiate a new object
   
   $firstName = ""; //set default values for variables
   $number = "";
@@ -162,7 +166,19 @@
   return $data;
 }
 
-   
+function custom_echo($x, $length)
+{
+  if(strlen($x)<=$length)
+  {
+    echo $x;
+  }
+  else
+  {
+    $y=substr($x,0,$length) . '...';
+    echo $y;
+  }
+}
+  
  ?>
 
 <script type="text/javascript">
@@ -207,33 +223,41 @@
 <p>&nbsp;</p>
 
 
+
 <div id="orderArea">
+
 <form name="form3" method="post" action="">
   <h3>Customer Registration Form</h3>
 
+    <p><span class="error">* required field</span></p>
       <p>
         <label for="inName">Name:</label>
         <input type="text" name="inName" id="inName" value="<?php echo $firstName; ?>">
+        <span class="error">* <?php echo $validateTool->validateRequiredField($firstName);?></span>
       </p>
       <p>
         <label for="textfield2">Phone Number:</label>
         <input type="text" name="inNumber" id="inNumber" value="<?php echo $number; ?>">
+        <span class="error">* <?php echo $validateTool->validate_phone_number($number);?></span>
       </p>
       <p>
         <label for="textfield3">Email Address: </label>
         <input type="text" name="inEmail" id="inEmail" value="<?php echo $email; ?>">
+        <span class="error">* <?php echo $validateTool->validateEmailField($email);?></span>
       </p>
       <p>
-        <label>Registration: </label>
+        <label>Registration:</label>
         <select> 
-          <option type="select" name="select" value="">Choose Type</option>
+          <option type="select" name="select" value="">Choose Type</option> 
           <option type="select" name="select" value="attendee" <?php echo $postAttendee; ?> >Attendee</option>
           <option type="select" name="select" value="presenter" <?php echo $postPresenter; ?> >Presenter</option>
           <option type="select" name="select" value="volunteer" <?php echo $postVolunteer; ?>>Volunteer</option>
           <option type="select" name="select" value="guest" <?php echo $postGuest ;?>>Guest</option>
         </select>
+        <span class="error">* <?php echo $validateTool->validateOptionList($registration);?></span>
       </p>
-      <p>Badge Holder:</p>
+      <p>Badge Holder:<span class="error">* <?php echo $validateTool->validateRadioButton($inBadgeHolder);?></span></p>
+
       <p>
         <input type="radio" name="radio" id="radio" value="chip" checked <?php echo $postBadgeHolder01; ?> >
         <label for="radio">Clip</label> <br>
@@ -253,7 +277,7 @@
       <p>
         <label for="textarea">Special Requests/Requirements: (Limit 200 characters)<br>
         </label>
-        <textarea name="comment" cols="40" rows="5" ><?php echo $comment; ?></textarea>
+        <textarea name="comment" cols="40" rows="5" ><?php echo $validateTool->validateComment($comment) ?></textarea>
       </p>
 
 </p>
