@@ -19,9 +19,9 @@
   $mealSaturday = "";
   $mealSunday = "";
   $specialMessage = "";
-  $meals = "";
-  $registration = "";
+  $inRegistration = "";
   $comment = "";
+  $inBadgeHolder = "";
 
   if(isset($_POST["submit"]))
   {
@@ -32,6 +32,7 @@
   $firstName = $_POST['inName'];
   $number = $_POST['inNumber'];
   $email = $_POST['inEmail'];
+  $inRegistration = $_POST['inRegistration'];
   //$inMeal = $_POST["meals"]; 
   //$registration = $_POST['inRegistration'];
   //$postBadgeHolder01 = $_POST['inPostBadgeHolder01'];
@@ -99,34 +100,7 @@
 //https://www.daniweb.com/programming/web-development/threads/380050/how-to-retain-drop-down-values-after-submit
 
   
-         if (isset($_POST["select"])) {         
-    $registration = $_POST["select"];
-    } else {
-     echo "";
-   }
-
-        if ("attendee" == $registration) {
-            $postAttendee = "selected='selected'";
-          }
-          if ("presenter" == $registration) {
-            $postPresenter = "selected='selected'";
-          }
-    
-        else {
-    
-            if ("volunteer" == $registration) {
-              $postVolunteer = "selected='selected'";
-            }
-    
-            else {
-    
-              if ("guest" == $registration) {
-                $psotGuest = "selected='selected'";
-              }
-    
-            }
-            
-        }
+     
 
        
   }
@@ -247,14 +221,14 @@ function custom_echo($x, $length)
       </p>
       <p>
         <label>Registration:</label>
-        <select> 
-          <option type="select" name="select" value="">Choose Type</option> 
-          <option type="select" name="select" value="attendee" <?php echo $postAttendee; ?> >Attendee</option>
-          <option type="select" name="select" value="presenter" <?php echo $postPresenter; ?> >Presenter</option>
-          <option type="select" name="select" value="volunteer" <?php echo $postVolunteer; ?>>Volunteer</option>
-          <option type="select" name="select" value="guest" <?php echo $postGuest ;?>>Guest</option>
-        </select>
-        <span class="error">* <?php echo $validateTool->validateOptionList($registration);?></span>
+        <select name="inRegistration" id="inRegistration">
+            <option value="" <?php if($inRegistration==""){echo "selected='selected'";}?>>Choose Type</option>
+            <option value="attendee" <?php if($inRegistration=="attendee"){echo "selected='selected'";}?>>Attendee</option>
+            <option value="presenter" <?php if($inRegistration=="presenter"){echo "selected='selected'";}?>>Presenter</option>
+            <option value="volunteer" <?php if($inRegistration=="volunteer"){echo "selected='selected'";}?>>Volunteer</option>
+            <option value="guest" <?php if($inRegistration=="guest"){echo "selected='selected'";}?>>Guest</option>
+          </select>
+        <span class="error">* <?php echo $validateTool->validateOptionList($inRegistration);?></span>
       </p>
       <p>Badge Holder:<span class="error">* <?php echo $validateTool->validateRadioButton($inBadgeHolder);?></span></p>
 

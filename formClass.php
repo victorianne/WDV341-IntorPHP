@@ -4,7 +4,6 @@
 class FormValidation 
 {
 
-
 /*
 This class will hold a variety of general pipose methods that are used to validate fomr fields.
 the methods will accept inputs as needed and will return true if the value(s) pass the validation and false otherwise.
