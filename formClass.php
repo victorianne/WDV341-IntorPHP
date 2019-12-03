@@ -50,6 +50,21 @@ public function validateEmailField($inputValue)
 
 }//end of validateEmailField
 
+function validate_phone_number($inputValue)
+{
+     // Allow +, - and . in phone number
+     $filtered_phone_number = filter_var($inputValue, FILTER_SANITIZE_NUMBER_INT);
+     // Remove "-" from number
+     $phone_to_check = str_replace("-", "", $filtered_phone_number);
+     // Check the lenght of number
+     // This can be customized if you want phone number from a specific country
+     if (strlen($phone_to_check) < 10 || strlen($phone_to_check) > 14) {
+        return "false";
+     } else {
+       return true;
+     }
+}
+
 public function validateRadioButton($inputValue)
 {
 	if (trim($inputValue)=="")
@@ -61,7 +76,34 @@ public function validateRadioButton($inputValue)
 		return true;
 	}
 
-}//end of validateEmailField
+}//end of validateRadioButton
+
+public function validateOptionList($inputValue)
+{
+	if (trim($inputValue)=="")
+	{
+		return "false";
+	}
+	else
+	{
+		return true;
+	}
+
+}//end of validateRadioButton
+
+
+
+public function validateComment($string,$length=200,$append="&hellip;") {
+  $string = trim($string);
+
+  if(strlen($string) > $length) {
+    $string = wordwrap($string, $length);
+    $string = explode("\n", $string, 2);
+    $string = $string[0] . $append;
+  }
+
+  return $string;
+}
 
 }//end of FormValidation Class
 
