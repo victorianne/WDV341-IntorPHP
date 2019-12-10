@@ -1,7 +1,7 @@
 <?php
 
 
-class FormValidation 
+Class FormValidation 
 {
 
 /*
@@ -22,15 +22,26 @@ the methods will accept inputs as needed and will return true if the value(s) pa
 
 	//This field needs something in it. It can't be empty
 	{
-		if(!preg_match("/^[a-zA-Z ]*$/",$inputValue || ($inputValue) == ""))
-		{
+		global $validForm, $fieldErrMsg;
+		$fieldErrMsg = "";
 
-			return "Name Field is invalid";
+		if(empty($inputValue))
+		{
+			$validForm = false;
+			$fieldErrMsg = "Event Field is required";
 		}
 		else
 		{
-			return "";# code...
+			
+			if(!preg_match("/^[a-zA-Z ]*$/",$inputValue || ($inputValue) == ""))
+			{
+				$validForm = false;
+				$fieldErrMsg = "Invalid Event Field";
+			}
+
 		}
+		
+		
 	}//end validateRequiredField()
 
 public function requiredNumericField($inputValue)
