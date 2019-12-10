@@ -1,7 +1,6 @@
 <?php
 session_start();
 	include 'connect.php';			//connects to the database
-include '../deleteEvent.php';
 
 	$stmt = $conn->prepare("SELECT event_id, event_name, event_description, event_date, event_time, event_location FROM final_event");
 	$stmt->execute();
@@ -83,7 +82,7 @@ include '../deleteEvent.php';
 			echo "<td>" . $row['event_time'] . "</td>";
       if ($_SESSION['validUser'] == "yes") {
 			echo "<td><a href='updateEvent.php?recID=" . $row['event_id'] . "'>Update</a></td>"; 
-			echo "<td><a href='eventDelete.php?recID=" . $row['event_id'] . "'>Delete</a></td>"; 
+			echo "<td><a href='deleteEvent.php?recID=" . $row['event_id'] . "'>Delete</a></td>"; 
       }		
 		echo "</tr>";
 	}
